@@ -7,6 +7,7 @@ using namespace std;
 //没使用泛型，可以更改一下
 class minheap{
 private:
+//heap[0]舍弃不用
     int heap[201]={0};//the biggest size 
     int count;//the real size
 
@@ -21,6 +22,8 @@ public:
     void show();
     int Getmin();//获得第一个，即heap[1]
     int extract_min();//去掉第一个，再修复
+    minheap(){};
+    ~minheap(){};
 
 };
 
@@ -92,6 +95,7 @@ int minheap::extract_min(){
     heap[count]=100000;
     int a=count--;
     Down(1,a);
+    count--;
     return temp;
 }
 /**
@@ -133,7 +137,7 @@ int main(){
     int a,b;
     cin>>a>>b;
     test.decrease_key(a,b);
-    cout<<"decrease "<<endl;
+    cout<<"after decrease "<<endl;
     cout<<test.Getmin()<<endl;
     cout<<"================================================================"<<endl;
     test.insert(2);
