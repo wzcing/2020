@@ -6,8 +6,6 @@ using namespace std;
 //为了简化代码故使用了STL里面的优先队列
 //所用到的功能均可以由前两份作业代码改动一下得到
 
-
-
 struct point{
     int point1=0;
     int point2=0;
@@ -15,15 +13,13 @@ struct point{
     bool operator>(const point& a)const {
         return weight > a.weight;
     }
-    //point(){}
-    //point(int a,int b,int c):point1(a),point2(b),weight(c){}
 };
 
 priority_queue<point,vector<point>,greater<point> > primqueue;
 
 point Edges[60];//存储所有的边
 bool V[8]={0};//确定点是否已经全部遍历
-point final[8];
+point final[8];//存储最后的结果
 
 
 
@@ -33,31 +29,12 @@ void findalledges(int size,int edge){
             if(V[j]==true){//遍历所有在集合中的点
                 if(Edges[i].point1==j&&V[Edges[i].point2]==false||V[Edges[i].point1]==false&&Edges[i].point2==j){//如果一个点是j一个点不在集合中的话那就加进来
                     primqueue.push(Edges[i]);
-                    //V[Edges[i].point2]=true;//把点设置为已加入集合
-                    //V[Edges[i].point1]=true;//为了方便就没判断了
                 }
             }
         }
         
     }
 }
-
-
-void test(){
-    int num=0;
-    for(int j=0;j<8;j++){
-        if(V[j]==false){
-            num++;
-        }
-    }
-    if(num==0){
-        for(int j=0;j<8;j++){
-            cout<<final[j].point1<<" "<<final[j].point2<<" "<<final[j].weight<<endl;
-        }
-        return;
-    }
-}
-
 
 int main() {
     //输入数据
@@ -70,7 +47,6 @@ int main() {
         int point2=0;
         int weight=0;
         cin>>point1>>point2>>weight;
-        //Edges[i](point1,point2,weight);
         Edges[i].point1=point1;
         Edges[i].point2=point2;
         Edges[i].weight=weight;
@@ -79,19 +55,20 @@ int main() {
     
     V[0]=true;//首先加入一个0点
     for(int i=0;i<8;i++){
-        
+        //这里没有判断，就在把所有的符合条件的边加入进来
         findalledges(size,edge);
         point temp=primqueue.top();
         while(V[temp.point1]==true&&V[temp.point2]==true&&primqueue.size()>0){
             primqueue.pop();
             temp=primqueue.top();
         }
+        //没有判断，就是把两个点都设置为true
         V[temp.point1]=true;
         V[temp.point2]=true;
-        primqueue.pop();
         final[count]=temp;
         count++;
     }
+    //输出结果
     for(int i=0;i<count-1;i++){
         cout<<final[i].point1<<" "<<final[i].point2<<" "<<final[i].weight<<endl;
     }
