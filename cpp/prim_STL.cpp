@@ -12,14 +12,14 @@ struct point{
     int point1=0;
     int point2=0;
     int weight=0;
-    bool operator<(const point& a)const {
-        return weight < a.weight;
+    bool operator>(const point& a)const {
+        return weight > a.weight;
     }
     //point(){}
     //point(int a,int b,int c):point1(a),point2(b),weight(c){}
 };
 
-priority_queue<point> primqueue;
+priority_queue<point,vector<point>,greater<point> > primqueue;
 
 point Edges[60];//存储所有的边
 bool V[8]={0};//确定点是否已经全部遍历
@@ -78,21 +78,73 @@ int main() {
 
     
     V[0]=true;//首先加入一个0点
-    for(int i=0;i<=edge;i++){
+    for(int i=0;i<8;i++){
         
         findalledges(size,edge);
         point temp=primqueue.top();
-        if(V[temp.point1]==true&&V[temp.point2]==true){
+        while(V[temp.point1]==true&&V[temp.point2]==true&&primqueue.size()>0){
             primqueue.pop();
-        }else{
-            V[temp.point1]=true;
-            V[temp.point2]=true;
-            primqueue.pop();
-            final[count]=temp;
-            count++;
+            temp=primqueue.top();
         }
+        V[temp.point1]=true;
+        V[temp.point2]=true;
+        primqueue.pop();
+        final[count]=temp;
+        count++;
     }
-    
-
-    return 0;
+    for(int i=0;i<count-1;i++){
+        cout<<final[i].point1<<" "<<final[i].point2<<" "<<final[i].weight<<endl;
+    }
 }
+//以下为输入数据
+//8个顶点，16条边
+// 8
+// 16
+// 4
+// 5
+// 35  
+// 4
+// 7
+// 37
+// 5
+// 7
+// 28
+// 0
+// 7
+// 16
+// 1
+// 5
+// 32
+// 0
+// 4
+// 38
+// 2
+// 3
+// 17
+// 1
+// 7
+// 19
+// 0
+// 2
+// 26
+// 1
+// 2
+// 36
+// 1
+// 3
+// 29
+// 2
+// 7
+// 34
+// 6
+// 2
+// 40
+// 3
+// 6
+// 52
+// 6
+// 0
+// 58
+// 6
+// 4
+// 93
