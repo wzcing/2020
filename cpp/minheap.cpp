@@ -4,12 +4,13 @@
 #include<time.h>
 using namespace std;
 
-//没使用泛型，可以更改一下
+//没使用泛型
+//并且设置了最大空间
 class minheap{
 private:
 //heap[0]舍弃不用
-    int heap[201]={0};//the biggest size 
-    int count;//the real size
+    int heap[201]={0};//最大空间，并存储权重
+    int count;//真实大小
 
 public:
     void set_count(int i);
@@ -128,16 +129,18 @@ int main(){
 
     test.show();
     cout<<"================================================================"<<endl;
+    cout<<"after getm45in "<<endl;
     cout<<test.Getmin()<<endl;
     cout<<"================================================================"<<endl;
     cout<<test.extract_min()<<endl;
-    cout<<"after extract "<<endl;
+    cout<<"after extract_min "<<endl;
     cout<<test.Getmin()<<endl;
     cout<<"================================================================"<<endl;
+    cout<<"you need to select a number in this sequence and input a number to replace it "<<endl;
     int a,b;
     cin>>a>>b;
     test.decrease_key(a,b);
-    cout<<"after decrease "<<endl;
+    cout<<"after decrease_key "<<endl;
     cout<<test.Getmin()<<endl;
     cout<<"================================================================"<<endl;
     test.insert(2);

@@ -18,8 +18,13 @@ class graph{
 public:
     graph(){};
 
-    node *Make_Set(int data){
-            node *temp=new node;
+    node *Make_Set(int data);
+    node *Find_Set(node a);
+    node *Union(node *a, node *b);
+};
+
+node *graph::Make_Set(int data){
+    node *temp=new node;
     //Head final;
     temp->data=data;
     temp->next=nullptr;
@@ -27,12 +32,14 @@ public:
     //final.head=temp;
     //final.tail=temp;
     return temp;
-    }
-    node *Find_Set(node a){
-        return a.parent;
-    }
-    node *Union(node *a, node *b){
-        node *x=Find_Set(*a);
+}
+
+node* graph::Find_Set(node a){
+    return a.parent;
+}
+
+node* graph::Union(node *a, node *b){
+    node *x=Find_Set(*a);
     node *y=Find_Set(*b);
     Head *temp1=new Head;
     Head *temp2=new Head;
@@ -82,78 +89,9 @@ public:
         y->rank+=x->rank;
         return y;
     }
-    }
-};
+}
 
-// node *graph::Make_Set(int data){
-//     node *temp=new node;
-//     //Head final;
-//     temp->data=data;
-//     temp->next=nullptr;
-//     temp->parent=temp;
-//     //final.head=temp;
-//     //final.tail=temp;
-//     return temp;
-// }
-
-// node* graph::Find_Set(node a){
-//     return a.parent;
-// }
-
-// node* graph::Union(node *a, node *b){
-//     node *x=Find_Set(*a);
-//     node *y=Find_Set(*b);
-//     Head *temp1=new Head;
-//     Head *temp2=new Head;
-//     if(x==y){return;}
-//     if(x->rank>y->rank){
-//         temp1->head=x;
-//         while(a->next!=nullptr){
-//             a=a->next;
-//         }
-//         temp1->tail=a;
-        
-//         temp2->head=y;
-//         while(b->next!=nullptr){
-//             b=b->next;
-//         }
-//         temp2->tail=b;
-
-//         temp1->tail->next=temp2->head;
-//         while(y->next!=nullptr){
-//             y->parent=x;
-//             y=y->next;
-//         }
-//         y->parent=x;
-
-//         //temp2->head=temp1->head;
-//         x->rank+=y->rank;
-//         return x;
-//     }else{
-//         temp1->head=y;
-//         while(b->next!=nullptr){
-//             b=b->next;
-//         }
-//         temp1->tail=b;
-        
-//         temp2->head=x;
-//         while(a->next!=nullptr){
-//             a=a->next;
-//         }
-//         temp2->tail=a;
-//         temp1->tail->next=temp2->head;
-//         while(x->next!=nullptr){
-//             x->parent=y;
-//             x=x->next;
-//         }
-//         x->parent=y;
-//         //temp2->head=temp1->head;
-//         y->rank+=x->rank;
-//         return y;
-//     }
-// }
-
-//从X节点开始，输出它和它的子节点的数据
+//从X节点开始，输出它和它的子节点的shu'j
 void show(node *x){
     while(x!=nullptr){
         cout<<x->data<<" ";
@@ -174,13 +112,13 @@ int main(){
     x.Union(x4,x5);
     x.Union(x5,x3);
     //这里加入集合的顺序是
-    //x1,x2->{x1,x2}
-    //x3->{x1,x2,x3}
-    //x5,x4->{x5,x4}
-    //{x5,x4},{x1,x2,x3}->{x1,x2,x3,x4,x5}
+    //x1,x2->{x1,x2} x2为根节点
+    //x3,{x1,x2}->{x1,x2,x3} x2为根节点
+    //x5,x4->{x5,x4} x4为根节点
+    //{x5,x4},{x1,x2,x3}->{x1,x2,x3,x4,x5} x2为根节点
     //由于UNION算法的关系,最终输出的值顺序为
     //x2,x1,x3,x5,x4
-    //为了观看清楚就直接用最后得到的总节点来输出了
+    //为了观看清楚就直接用最后得到的根节点来输出了
     show(x2);
 
 
