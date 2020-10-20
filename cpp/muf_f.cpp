@@ -6,7 +6,7 @@ typedef struct node {
     int data;
     node *parent=nullptr;
     node *next=nullptr;
-    int rank=1;
+    int rank=1;//权重
 }node;
 
 typedef struct head {
@@ -25,12 +25,9 @@ public:
 
 node *graph::Make_Set(int data){
     node *temp=new node;
-    //Head final;
     temp->data=data;
     temp->next=nullptr;
     temp->parent=temp;
-    //final.head=temp;
-    //final.tail=temp;
     return temp;
 }
 
@@ -64,7 +61,6 @@ node* graph::Union(node *a, node *b){
         }
         y->parent=x;
 
-        //temp2->head=temp1->head;
         x->rank+=y->rank;
         return x;
     }else{
@@ -85,7 +81,6 @@ node* graph::Union(node *a, node *b){
             x=x->next;
         }
         x->parent=y;
-        //temp2->head=temp1->head;
         y->rank+=x->rank;
         return y;
     }

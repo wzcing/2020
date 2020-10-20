@@ -18,7 +18,7 @@ public:
     void Up(int i);//不断把一个节点和它的父节点相比较，使得小的那一个成为父节点
     void Down(int i,int count);//大的那一个成为子节点
     void insert(int i);//总是插入到数组最后
-    void Creatheap();
+    void Creatheap(int a[]);
     void decrease_key(int i,int k);
     void show();
     int Getmin();//获得第一个，即heap[1]
@@ -74,12 +74,9 @@ void minheap::insert(int i){
     Up(a);
 }
 
-void minheap::Creatheap(){
+void minheap::Creatheap(int a[]){
     for(int i=1;i<=count;i++){
-        int temp=rand()%100+1;
-        
-        // cin>>temp;
-        heap[i]=temp;
+        heap[i]=a[i];
         Up(i);
     }
 }
@@ -120,26 +117,23 @@ void minheap::decrease_key(int i,int k){
 
 int main(){
     minheap test;
-    srand((unsigned)time(NULL));
+    int a[10]={0,34,15,56,32,67,22,58,27,99};
     //由于是随机生成的，所以可能会有两个一样的数字同时出现的状况
     //比如最小数字有两个
     //这时候结果可能不是那么直观
     test.set_count(9);//设置9个数字，最大为200个，也可以更改
-    test.Creatheap();
+    test.Creatheap(a);
 
     test.show();
     cout<<"================================================================"<<endl;
-    cout<<"after getm45in "<<endl;
+    cout<<"after getmin "<<endl;
     cout<<test.Getmin()<<endl;
     cout<<"================================================================"<<endl;
     cout<<test.extract_min()<<endl;
     cout<<"after extract_min "<<endl;
     cout<<test.Getmin()<<endl;
     cout<<"================================================================"<<endl;
-    cout<<"you need to select a number in this sequence and input a number to replace it "<<endl;
-    int a,b;
-    cin>>a>>b;
-    test.decrease_key(a,b);
+    test.decrease_key(99,5);
     cout<<"after decrease_key "<<endl;
     cout<<test.Getmin()<<endl;
     cout<<"================================================================"<<endl;
@@ -148,3 +142,19 @@ int main(){
     cout<<test.Getmin()<<endl;
     
 }
+//最终结果
+
+// 15 27 22 32 67 56 58 34 99 
+// ================================================================
+// after getmin 
+// 15
+// ================================================================
+// 15
+// after extract_min 
+// 22
+// ================================================================
+// after decrease_key 
+// 5
+// ================================================================
+// after insert 2
+// 2
