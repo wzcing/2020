@@ -117,11 +117,9 @@ void minheap::decrease_key(int i,int k){
 
 int main(){
     minheap test;
+    test.set_count(9);
     int a[10]={0,34,15,56,32,67,22,58,27,99};
-    //由于是随机生成的，所以可能会有两个一样的数字同时出现的状况
-    //比如最小数字有两个
-    //这时候结果可能不是那么直观
-    test.set_count(9);//设置9个数字，最大为200个，也可以更改
+    //设置9个数字，最大为200个，也可以更改
     test.Creatheap(a);
 
     test.show();
@@ -129,7 +127,6 @@ int main(){
     cout<<"after getmin "<<endl;
     cout<<test.Getmin()<<endl;
     cout<<"================================================================"<<endl;
-    cout<<test.extract_min()<<endl;
     cout<<"after extract_min "<<endl;
     cout<<test.Getmin()<<endl;
     cout<<"================================================================"<<endl;

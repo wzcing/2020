@@ -19,7 +19,7 @@ public:
     graph(){};
 
     node *Make_Set(int data);
-    node *Find_Set(node a);
+    node *Find(node a);
     node *Union(node *a, node *b);
 };
 
@@ -31,13 +31,13 @@ node *graph::Make_Set(int data){
     return temp;
 }
 
-node* graph::Find_Set(node a){
+node* graph::Find(node a){
     return a.parent;
 }
 
 node* graph::Union(node *a, node *b){
-    node *x=Find_Set(*a);
-    node *y=Find_Set(*b);
+    node *x=Find(*a);
+    node *y=Find(*b);
     Head *temp1=new Head;
     Head *temp2=new Head;
     if(x==y){return a;}
@@ -106,6 +106,9 @@ int main(){
     x.Union(x1,x3);
     x.Union(x4,x5);
     x.Union(x5,x3);
+
+    cout<<x.Find(*x5)->data<<endl;
+    
     //这里加入集合的顺序是
     //x1,x2->{x1,x2} x2为根节点
     //x3,{x1,x2}->{x1,x2,x3} x2为根节点
@@ -115,10 +118,6 @@ int main(){
     //x2,x1,x3,x5,x4
     //为了观看清楚就直接用最后得到的根节点来输出了
     show(x2);
-
-
-
-
 }
 
 

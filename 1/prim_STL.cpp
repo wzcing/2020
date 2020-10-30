@@ -32,7 +32,6 @@ void findalledges(int size,int edge){
                 }
             }
         }
-        
     }
 }
 
