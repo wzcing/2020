@@ -28,12 +28,13 @@ public:
     void DFS(int num);//深度优先搜索
     void DFS_Visit(int a);//不断递归，并把经过的点变换状态
     void addNode(int a,int b);//程序一开始时添加数据，这里用了课件上的数据
+    
     void showdetails(int num);//展示程序完成时的状态
 
     void topo(int num);//拓扑排序和最后结果的展示
-    
+
 private:
-    list<int> *v;
+    list<int> *v;//存储边的信息
     Node *arr;//记录详细信息
     int time=0;
 };
