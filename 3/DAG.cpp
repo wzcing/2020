@@ -101,3 +101,35 @@ null   1      0
 
 }
 
+/**
+ * RELAX(U,V)
+ * if u,d+w(u,v)<v.d
+ *      v.d=u.d+w(u,v)
+ *      v.p=u
+ * 
+ * 
+ * bellman_ford(G,w,s)
+ * Initialize-Single-Source(G,s)
+ * fori=1 to |V|−1
+ *      for each edge (u,v)∈E
+ *          Relax(u,v)
+ * for each edge (u,v)∈E
+ *      if .d>u.d+w(u,v)
+ *          return FALSE
+ *      return TRUE
+ * 
+ * O(|V||E|)
+
+ * 
+ * dag(G,w,s)
+ *  topologically sort the vetices of G
+ *  initialize-single sorce(G,s)
+ *  for each vetex u,take in topologically sorted order
+ *          for each edge(U,V)∈E
+ *              RELAX(U,V)
+ * 
+ * O(|V|+|E|).
+
+
+
+ */

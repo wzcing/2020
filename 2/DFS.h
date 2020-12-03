@@ -108,3 +108,38 @@ void Graph::topo(int num){
     }
 
 }
+/**
+ * DFS(G)
+ * for each vertexu∈V
+ *      u.c←white
+ *      u.p←NIL
+ * time←0
+ * for each vertex u∈V
+ *      if u.c=white then
+ *          DFS-visit(G,u)
+
+ * DFS-visit(G,u)
+ * time←time+1//white vertexuhas just been discovered
+ * u.d←time
+ * u.c←gray
+ * for each edge (u,v)∈E//explore edge (u,v)
+ *      if v.c=white then
+ *          v.p←u
+ *          DFS-visit(G,v)
+ * u.c←black//blackenu; it is finished
+ * time←time+1
+ * u.f←time
+ * 
+ * O(|V|+|E|).
+ * 
+ * 
+ * 
+ * Topological-Sort(G)
+ * callDFS(G) to compute finishing times v.f for each vertex v
+ * as each vertex is finished, insert it onto the front of a linked list
+ * returnthe linked list of vertices
+ * 
+ * O(|V|+|E|)
+ * 
+ * 
+ */ 

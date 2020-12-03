@@ -4,6 +4,7 @@
 #include<time.h>
 using namespace std;
 
+
 //没使用泛型
 //并且设置了最大空间
 class minheap{

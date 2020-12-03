@@ -53,7 +53,9 @@ int main() {
 
     
     V[0]=true;//首先加入一个0点
-    for(int i=0;i<8;i++){
+    int resize=8;
+    //for(int i=0;i<8;i++){
+    while(resize!=-1){
         //这里没有判断，就在把所有的符合条件的边加入进来
         findalledges(size,edge);
         point temp=primqueue.top();
@@ -66,12 +68,47 @@ int main() {
         V[temp.point2]=true;
         final[count]=temp;
         count++;
+
+        resize--;
     }
     //输出结果
     for(int i=0;i<count-1;i++){
         cout<<final[i].point1<<" "<<final[i].point2<<" "<<final[i].weight<<endl;
     }
+    
 }
+// // 
+// MST-Prim(G,w,s)
+// for each u∈V do
+//     u.key=+∞
+//     u.p=NULL
+// s.key=0
+// Q←V
+// while Q!=∅ do
+//     u←Extract-Min(Q)
+//     for each (u,v)∈E do
+//         if v∈ Q and w(u,v)<v.key then
+//             v.p=u
+//             Decrease-Key(Q,v,w(u,v))
+
+//O(|E|log|V|)
+
+// Make-set(x)
+// x.p←x
+// x.rank←0
+
+// Union(x,y)
+// u←Find(x),v←Find(y)
+// if u.rank≤v.rank then
+//     u.p←v
+//     if u.rank=v.rank then 
+//         v.rank←v.rank+1
+// else v.p←u
+
+
+
+
+
 //以下为输入数据
 //8个顶点，16条边
 // 8
