@@ -53,7 +53,7 @@ bool Graph::bellman(int s,int number){
                 v[edge[j].num2].parent=edge[j].num1;
             }
         }
-
+        
     }
     //判断有无负权回路
     for(int i=0;i<edgenum;i++){

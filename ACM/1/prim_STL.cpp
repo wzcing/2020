@@ -22,16 +22,22 @@ bool V[8]={0};//确定点是否已经全部遍历
 point final[8];//存储最后的结果
 
 
-
+//都是对的
+// void findalledges(int size,int edge){
+//     for(int i=0;i<edge;i++){//遍历，想要找到和一个点相连的所有边
+//         for(int j=0;j<size;j++){
+//             if(V[j]==true){//遍历所有在集合中的点
+//                 if(Edges[i].point1==j&&V[Edges[i].point2]==false||V[Edges[i].point1]==false&&Edges[i].point2==j){//如果一个点是j一个点不在集合中的话那就加进来
+//                     primqueue.push(Edges[i]);
+//                 }
+//             }
+//         }
+//     }
+// }
 void findalledges(int size,int edge){
-    for(int i=0;i<edge;i++){//遍历，想要找到和一个点相连的所有边
-        for(int j=0;j<size;j++){
-            if(V[j]==true){//遍历所有在集合中的点
-                if(Edges[i].point1==j&&V[Edges[i].point2]==false||V[Edges[i].point1]==false&&Edges[i].point2==j){//如果一个点是j一个点不在集合中的话那就加进来
-                    primqueue.push(Edges[i]);
-                }
-            }
-        }
+    for(int i=0;i<edge;i++){
+        if(V[Edges[i].point1]==true&&V[Edges[i].point2]==false||V[Edges[i].point2]==true&&V[Edges[i].point1]==false)
+            primqueue.push(Edges[i]);
     }
 }
 
@@ -54,8 +60,8 @@ int main() {
     
     V[0]=true;//首先加入一个0点
     int resize=8;
-    //for(int i=0;i<8;i++){
-    while(resize!=-1){
+    for(int i=0;i<8;i++){
+    //while(resize!=-1){
         //这里没有判断，就在把所有的符合条件的边加入进来
         findalledges(size,edge);
         point temp=primqueue.top();
@@ -69,7 +75,7 @@ int main() {
         final[count]=temp;
         count++;
 
-        resize--;
+        //resize--;
     }
     //输出结果
     for(int i=0;i<count-1;i++){

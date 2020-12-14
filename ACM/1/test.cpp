@@ -1,6 +1,7 @@
 #include<iostream>
 #include<queue>
-
+int edgenum=0;
+int nodenum=0;
 using namespace std;
 
 struct point{
@@ -16,8 +17,26 @@ struct point{
     //point(){}
     point(int a,int b,int c):point1(a),point2(b),weight(c){}
 };
+point edge[100];
+point final[10];
+bool v[10];
+
 
 priority_queue<point, vector<point>,less<point> > p;
+
+void findalledge(){
+    for(int i=0;i<edgenum;i++){
+        if(v[edge[i].point1]==true||v[edge[i].point2]==true){
+            p.push(edge[i]);
+        }
+    }
+}
+
+
+
+
+
+
 int a[5]={5,4,3,2,11};
 
 int main(){
@@ -30,4 +49,20 @@ int main(){
         p.push(temp);
     }
     cout<<p.top().point1<<" "<<p.top().point2<<" "<<p.top().weight<<endl;
+
+    for(int i=0;i<nodenum;i++){
+        findalledge();
+        point temp=p.top();
+        while(v[temp.point1]==true&&v[temp.point2]==true&&p.size()>0){
+            p.pop();
+            temp=p.top();
+        }
+        final[i]=temp;
+
+    }
+
+
+
+
+
 }
