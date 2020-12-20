@@ -1,0 +1,18 @@
+<script>
+  function check() {
+      var psd1= document.getElementById("psd1");
+      var psd2= document.getElementById("psd2");
+      if( psd1.value != psd2.value )  {   alert("密码不一致");   return false;   }
+      else return true;        
+  }
+  </script>
+  <form name=f1 action="hi.html" onsubmit="return check()" >
+    输入密码<input type="password" id="psd1"><br/>
+    确认密码<input type="password" id="psd2">
+       <input type="submit" value="提交">
+  </form>
+  <p id="sfds">dscjkio</p>
+  <form action="fds" method="post">
+    <input type="text" id="use">
+    <input type="checkbox" id="dew">
+  </form>

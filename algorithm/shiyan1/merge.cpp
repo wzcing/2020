@@ -1,37 +1,15 @@
 #include<iostream>
-
+#include<time.h>
 using namespace std;
 
-// void merge(int *a,int *l,int *r,int left,int right){
-//     int i = 0, j = 0, k = 0;
-//     while(i<left&&j<right){
-//         if(l[i]<=r[j]){
-//             a[k++] = l[i++];
-//         }else{
-//             a[k++] = r[j++];
-//         }
-//         while(i<left){
-//             a[k++] = l[i++];
-//         }
-//         while(j<right){
-//             a[k++] = r[j++];
-//         }
-//     }
-// }
-
-void merge1(int *a,int *l,int left,int *r,int right){
-   // int i = 0, j = 0, k = 0;
-    int i, j, k;
-    i = 0;
-    j = 0;
-    k = 0;
+void merge(int *a,int *l,int left,int *r,int right){
+    int i = 0, j = 0, k = 0;
     while(i<left&&j<right){
         if(l[i]<=r[j]){
             a[k++] = l[i++];
         }else{
             a[k++] = r[j++];
         }
-        
     }
 	while(i<left){
 		a[k++] = l[i++];
@@ -56,9 +34,7 @@ void sort(int *a,int n){
 
     sort(l, mid);
     sort(r, n - mid);
-    merge1(a, l, mid, r, n - mid);
-    delete[] l;
-    delete[] r;
+    merge(a, l, mid, r, n - mid);
 }
 
 
@@ -103,18 +79,22 @@ void sort(int *a,int n){
 
 
 int main(){
-    int a[10] = {6, 2, 3, 1, 9, 10, 15, 13, 12, 17};
-    // for (int i = 0; i < 10;i++){
-    //     cout << a[i] << " ";
-    // }
-    int numberOfElements = sizeof(a)/sizeof(a[0]);
-    sort(a, 10);
-    //MergeSort(a, numberOfElements);
-    for (int i = 0; i < 10;i++){
+    int a[10] = {0};
+	srand(time(NULL));
+	for (int i = 0; i < 10;i++){
+		int temp = rand() % 100 + 1;
+		a[i] = temp;
+	}
+	cout << "随机生成的数字10个" << endl;
+	for (int i = 0; i < 10;i++){
+		cout << a[i] << " ";
+	}
+	cout << endl;
+	sort(a, 10);
+	cout << "排序结果" << endl;
+	for (int i = 0; i < 10;i++){
         cout << a[i] << " ";
     }
-
-	
 }
 
 
