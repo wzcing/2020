@@ -41,6 +41,7 @@ void findalledges(int size,int edge){
     }
 }
 
+
 int main() {
     //输入数据
     int size=0;
