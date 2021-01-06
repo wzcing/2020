@@ -24,7 +24,6 @@ void queue(int i){
         for (j = 1; j <= 8;j++){
             if(find(i,j)){
                 q[i] = j;
-                
                 queue(i + 1);
             }
         }

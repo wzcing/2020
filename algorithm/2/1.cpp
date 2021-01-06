@@ -6,36 +6,52 @@ class Graph{
 private:
     int points[11][11] = {0};
     int cost[11] = {0};
+    int path[11] = {0};
 
 public:
     void find(int a,int finalnumber);
     void add(int a, int b, int c);
+    Graph(){
+        for (int i = 0; i < 11;i++){
+            cost[i] = 100;
+        }
+    }
 };
 
 
 void Graph::add(int a,int b,int c){
         points[a][b] = c;
-        //points[b][a] = c;
 };
 
 
-void Graph::find(int a,int finalnumber){ 
-    if(a==1){
-        cout << "the cost is: " << finalnumber << endl;
-        return;
-    }
-    int min = 100;
-    for (int i = a; i > 0;i--){
-        if(points[a][i]!=0){
-            if(points[a][i]<min){
-                min=points[a][i];
+void Graph::find(int a,int finalnumber){
+    cost[1] = 0;
+    int tempcost = 0;
+    for (int i = 2; i < 11;i++){
+        for (int j = 1; j < i;j++){
+            if(points[j][i]!=0){
+                tempcost = cost[j] + points[j][i];
+                if(tempcost<cost[i]){
+                    cost[i] = tempcost;
+                    path[i] = j;
+                }
             }
-            
         }
-        cout << "the min is: " << min << endl;
-        finalnumber += min;
-        find(a--,finalnumber);
     }
+
+    for (int i = 1; i < 11;i++){
+        cout << "V: " << i << " cost: " << cost[i] << endl;
+        int k = i;
+        cout << "path ";
+        while(path[k]){
+            k = path[k];
+            cout << k << " ";
+        }
+		cout << endl;
+    }
+
+    
+
 }
 
 int main(){
@@ -60,7 +76,7 @@ int main(){
     node.add(8, 10, 8);
     node.add(9, 10, 4);
 
-    node.find(10, 0);
+    node.find(1, 0);
     return 0;
 }
 
