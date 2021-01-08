@@ -43,8 +43,8 @@ int main(){
             dp[v] = max(dp[v], dp[v - w[i]]+ c[i]);
         }
         cout << w[i] << " " << c[i] << " ";
-        for (int j = 0; j <= V;j++){
         
+        for (int j = 0; j <= V;j++){
             cout << dp[j] << " ";
         }
         cout << endl;

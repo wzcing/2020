@@ -1,13 +1,10 @@
 // #include<stdio.h>
 // #include<stdlib.h>
-
 // const int maxv = 100;
 // const int inf = 100000;
-
 // int n,m,G[100][100];
 // int d[100];
 // Bool visited[100];
-
 // int prim(){
 //     for(int i=0;i<100;i++){
 //         d[i] = inf;
@@ -33,23 +30,17 @@
 //         return ans;
 //     }
 // }
-
 // int main(){
 //     int u, v, w;
 //     for (int i = 0; i < 100;i++){
 //         visited[i] == false;
 //     }
-
-    
-
-
 //     scanf("%d%d", &n, &m);
 //     for(int i=0;i<100;i++){
 //         for (int j = 0; j < 100;j++){
 //             G[i][j] = inf;
 //         }
 //     }
-
 //     G[0][1] = 5;
 //     G[1][0] = 5;
 //     G[0][2] = 6;
@@ -70,12 +61,10 @@
 //     G[5][3] = 4;
 //     G[4][5] = 4;
 //     G[5][4] = 4;
-
 //     for (int i = 0; i < m;i++){
 //         scanf("%d%d", &u, &v, &w);
 //         G[u][v] = G[v][u] = w;
 //     }
-
 //     int ans = prim();
 //     //printf("%d\n", ans);
 // }
@@ -106,26 +95,26 @@ int prim(){
         if(u==-1) 
             return -1;
         visited[u] = 1;
-            switch(u){
-    case 0:
-        printf("A-");
-        break;
-    case 1:
-        printf("B-");
-        break;
-    case 2:
-        printf("C-");
-        break;
-    case 3:
-        printf("D-");
-        break;
-    case 4:
-        printf("E");
-        break;
-    case 5:
-        printf("F-");
-        break;
-    }
+        switch(u){
+            case 0:
+                printf("A-");
+                break;
+            case 1:
+                printf("B-");
+                break;
+            case 2:
+                printf("C-");
+                break;
+            case 3:
+                printf("D-");
+                break;
+            case 4:
+                printf("E");
+                break;
+            case 5:
+                printf("F-");
+                break;
+        }
         ans +=d[u];
         for(int v = 0; v <= n;v++){
             if(visited[v]==0&&G[u][v]!=inf&&G[u][v]<d[v]){
