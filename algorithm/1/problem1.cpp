@@ -1,5 +1,3 @@
-
-
 #include<iostream>
 #include<time.h>
 using namespace std;
@@ -9,7 +7,7 @@ void merge(int *a,int *l,int left,int *r,int right){
     while(i<left&&j<right){
         if(l[i]<=r[j]){
             a[k++] = l[i++];
-        }else{
+        }else{ 
             a[k++] = r[j++];
         }
     }
