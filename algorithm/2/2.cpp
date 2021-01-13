@@ -13,15 +13,15 @@ void join(int *a, int t, int sum)
             max1 = sum;
         return;
     }
-    for(i = 0; i < t - 1; i ++)
+    for(i = 0; i < t - 1; i++)
     {
-        for(j = 0; j < i; j ++)
+        for(j = 0; j < i; j++)
             tmp[j] = a[j];
-        tmp[j] = a[j]+a[j+1];
-        s = sum + tmp[j];
-        for (j++; j < t - 1; j++)
-            tmp[j] = a[j+1];
-        join(tmp, t-1, s);
+            tmp[j] = a[j]+a[j+1];
+            s = sum + tmp[j];
+            for (j++; j < t - 1; j++)
+                tmp[j] = a[j+1];
+            join(tmp, t-1, s);
     }
 }
 
